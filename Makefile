@@ -18,5 +18,12 @@ migrateup:
 migratedown:
 	sudo migrate -path db/migration -database "$(DB_URL)" -verbose down
 
-.PHONY: postgresdbup postgresdbdown createdb dropdb migrateup migratedown
+migrateversion:
+	migrate -path db/migration -database "$(DB_URL)" version
+
+sqlc:
+	sqlc generate
+
+.PHONY: postgresdbup postgresdbdown createdb dropdb migrateup migratedown migrateversion sqlc
+
 
